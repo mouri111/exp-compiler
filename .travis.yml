@@ -1,3 +1,4 @@
+sudo: false
 matrix:
   include:
     - os: linux
@@ -7,6 +8,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-7
+            - python3-pip
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
@@ -14,7 +16,7 @@ install:
   - mkdir -p $PWD/ninja
   - curl -L https://github.com/ninja-build/ninja/releases/download/v1.8.2/ninja-linux.zip -o $PWD/ninja/ninja-linux.zip
   - unzip $PWD/ninja/ninja-linux.zip -d $PWD/ninja
-  - export PATH=$PATH:$PWD/ninja
-  - pip3 install meson
+  - pip3 install --user meson
+  - export PATH=$PATH:$PWD/ninja:~/.local
 
 script: ./configure && make && make test
