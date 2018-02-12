@@ -12,6 +12,9 @@ matrix:
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
+before_install:
+  - eval "${MATRIX_EVAL}"
+
 install:
   - mkdir -p $PWD/ninja
   - curl -L https://github.com/ninja-build/ninja/releases/download/v1.8.2/ninja-linux.zip -o $PWD/ninja/ninja-linux.zip
