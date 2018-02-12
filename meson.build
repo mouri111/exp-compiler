@@ -30,7 +30,7 @@ test_dummy = executable('test_dummy',
                         srcs,
                         include_directories: incdir,
                         c_args: warning_flags + test_flags,
-                        link_args: test_flags
+                        link_args: test_flags + ['-fuse-ld=gold']
                        )
 
 test('test_dummy', test_dummy)
