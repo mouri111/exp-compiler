@@ -19,4 +19,7 @@ install:
   - pip3 install --user meson
   - export PATH=$PATH:$PWD/ninja:~/.local
 
-script: ./configure && make && make test
+script: ./configure && make && make test && cd build && gcov test_dummy@exe/src_*.gcda
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

@@ -29,8 +29,8 @@ test_dummy = executable('test_dummy',
                         'test/test_dummy.c',
                         srcs,
                         include_directories: incdir,
-                        c_args: warning_flags + test_flags,
-                        link_args: test_flags + ['-fuse-ld=gold']
+                        c_args: warning_flags + test_flags + ['-coverage'],
+                        link_args: test_flags + ['-fuse-ld=gold'] + ['-coverage']
                        )
 
 test('test_dummy', test_dummy)
