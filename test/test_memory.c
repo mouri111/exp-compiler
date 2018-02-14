@@ -81,7 +81,7 @@ int test_int_many(bool failure) {
 }
 
 int main(int argc, char* argv[]) {
-   if( ! ( argc == 2 || ( argc == 3 && strcmp(argv[2], "failure") ) ) ) {
+   if( ! ( argc == 2 || ( argc == 3 && strcmp(argv[2], "failure") == 0 ) ) ) {
       return 1;
    }
    bool failure = argc == 3;
