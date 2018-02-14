@@ -80,8 +80,8 @@ int test_int_many(bool failure) {
    return res;
 }
 
-int test_memalloc_failure() {
-   int* p = memalloc(16, sizeof(int), true, __FILE__, __LINE__);
+int test_memalloc(bool failure) {
+   int* p = memalloc(16, sizeof(int), failure, __FILE__, __LINE__);
    memfree(p);
    return 0;
 }
@@ -103,8 +103,8 @@ int main(int argc, char* argv[]) {
    else if( strcmp(argv[1], "int_many") == 0 ) {
       return test_int_many(failure);
    }
-   else if( strcmp(argv[1], "memalloc_failure") == 0 ) {
-      return test_memalloc_failure();
+   else if( strcmp(argv[1], "memalloc") == 0 ) {
+      return test_memalloc(failure);
    }
    else {
       return 1;

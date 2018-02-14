@@ -89,8 +89,12 @@ test('test_memory nil test',
      args: ['nil'],
      should_fail: true
     )
-test('test_memory memalloc_failure',
+test('test_memory memalloc',
      test_memory,
-     args: ['memalloc_failure'],
+     args: ['memalloc'],
+    )
+test('test_memory memalloc failure',
+     test_memory,
+     args: ['memalloc', 'failure'],
      should_fail: true
     )
