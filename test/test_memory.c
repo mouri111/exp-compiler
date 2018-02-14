@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <string.h>
 #include "memory.h"
 
 int test_char_one(bool failure) {
@@ -26,7 +27,7 @@ int test_char_many(bool failure) {
    }
    for(int i = 0; i < 256; ++i) {
       for(int k = 0; k < i; ++k) {
-         if( p[i][k] != i^k || failure ) {
+         if( p[i][k] != (i^k) || failure ) {
             return 1;
          }
       }
@@ -59,7 +60,7 @@ int test_int_many(bool failure) {
    }
    for(int i = 0; i < 256; ++i) {
       for(int k = 0; k < i; ++k) {
-         if( p[i][k] != i^k || failure ) {
+         if( p[i][k] != (i^k) || failure ) {
             return 1;
          }
       }
