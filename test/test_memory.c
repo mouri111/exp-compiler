@@ -80,6 +80,12 @@ int test_int_many(bool failure) {
    return res;
 }
 
+int test_memalloc_failure() {
+   int* p = memalloc(16, sizeof(int), true, __FILE__, __LINE__);
+   memfree(p);
+   return 0;
+}
+
 int main(int argc, char* argv[]) {
    if( ! ( argc == 2 || ( argc == 3 && strcmp(argv[2], "failure") == 0 ) ) ) {
       return 1;
@@ -96,6 +102,9 @@ int main(int argc, char* argv[]) {
    }
    else if( strcmp(argv[1], "int_many") == 0 ) {
       return test_int_many(failure);
+   }
+   else if( strcmp(argv[1], "memalloc_failure") == 0 ) {
+      return test_memalloc_failure();
    }
    else {
       return 1;
