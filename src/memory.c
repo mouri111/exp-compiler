@@ -7,7 +7,7 @@
 void* memalloc(size_t num, size_t size, bool failure, const char* file, int line) {
    void* p = calloc(num, size);
    if( p == NULL || failure ) {
-      abort();
+      exit(1);
    }
    (void)file;
    (void)line;
