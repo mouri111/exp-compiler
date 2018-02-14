@@ -80,3 +80,12 @@ test('test_memory int_many',
      test_memory,
      args: ['int_many'],
     )
+test('test_memory no argument',
+     test_memory,
+     should_fail: true
+    )
+test('test_memory nil test',
+     test_memory,
+     args: ['nil'],
+     should_fail: true
+    )
