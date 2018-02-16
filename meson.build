@@ -1,7 +1,6 @@
 project('exp-compiler','c')
 
-srcs = ['src/dummy.c',
-        'src/memory.c',
+srcs = ['src/memory.c',
        ]
 
 incdir = include_directories('include')
@@ -26,14 +25,6 @@ exe = executable('exp-compiler',
                  c_args: warning_flags + opt_flags
                 )
 
-test_dummy = executable('test_dummy',
-                        'test/test_dummy.c',
-                        srcs,
-                        include_directories: incdir,
-                        c_args: warning_flags + test_flags + ['-coverage'],
-                        link_args: test_flags + ['-fuse-ld=gold'] + ['-coverage']
-                       )
-
 test_memory = executable('test_memory',
                          'test/test_memory.c',
                          srcs,
@@ -41,8 +32,6 @@ test_memory = executable('test_memory',
                          c_args: warning_flags + test_flags + ['-coverage'],
                          link_args: test_flags + ['-fuse-ld=gold'] + ['-coverage']
                         )
-
-test('test_dummy', test_dummy)
 
 test('test_memory char_one failure',
      test_memory,
