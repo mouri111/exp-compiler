@@ -41,6 +41,14 @@ test_assertion = executable('test_assertion',
                             link_args: test_flags + ['-fuse-ld=gold'] + ['-coverage']
                            )
 
+test_list = executable('test_list',
+                       'test/test_list.c',
+                       srcs,
+                       include_directories: incdir,
+                       c_args: warning_flags + test_flags + ['-coverage'],
+                       link_args: test_flags + ['-fuse-ld=gold'] + ['-coverage']
+                      )
+
 test('test_memory char_one failure',
      test_memory,
      args: ['char_one', 'failure'],
@@ -103,4 +111,8 @@ test('test_assertion failure',
      test_assertion,
      args: ['failure'],
      should_fail: true
+    )
+
+test('test_list',
+     test_list
     )
