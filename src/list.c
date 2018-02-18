@@ -23,7 +23,7 @@ void list_push_back(List *head, List *p) {
 
 List* list_pop_front(List *head) {
    if( head->next == head )
-      exit(1);
+      return NULL;
    List *res = head->next;
    List *p = head->next->next;
    head->next = p;
@@ -33,7 +33,7 @@ List* list_pop_front(List *head) {
 
 List* list_pop_back(List *head) {
    if( head->prev == head )
-      exitt(1);
+      return NULL;
    List *res = head->prev;
    List *p = head->prev->prev;
    head->prev = p;

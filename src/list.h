@@ -20,3 +20,12 @@ List* list_pop_back(List *head) __attribute__((warn_unused_result));
    for(T *p = (T*)((size_t)((head)->next)-offsetof(T,list));   \
        &p->list != head;                                       \
        p = (T*)((size_t)(p->list.next)-offsetof(T,list)))
+
+#define list_free_(T,list,head)                       \
+   do {                                               \
+      List *p = list_pop_front(head);                 \
+      while( p != NULL ) {                            \
+         memfree((T*)((size_t)p-offsetof(T,list)));   \
+         p = list_pop_front(head);                    \
+      }                                               \
+   } while(false)
