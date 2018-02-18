@@ -7,31 +7,16 @@ struct List {
    List *prev, *next;
 };
 
-#define list_init_(head)                        \
-   do {                                          \
-      (head)->prev = (head);                     \
-      (head)->next = (head);                     \
-   } while(false)
 
-#define list_push_front_(head,p)                \
-   do {                                         \
-      List *next = (head)->next;                \
-      (head)->next = (p);                       \
-      (p)->prev = (head);                       \
-      (p)->next = next;                         \
-      next->prev = (p);                         \
-   } while(false)
+void list_init(List *head);
 
-#define list_push_back_(head,p)                 \
-   do {                                         \
-      List* prev = (head)->prev;                \
-      (head)->prev = (p);                       \
-      (p)->next = (head);                       \
-      (p)->prev = prev;                         \
-      prev->next = (p);                         \
-   } while(false)
+void list_push_front(List *head, List *p);
+void list_push_back(List *head, List *p);
 
-#define list_for_(T,list,p,head)                            \
+List* list_pop_front(List *head) __attribute__((warn_unused_result));
+List* list_pop_back(List *head) __attribute__((warn_unused_result));
+
+#define list_for_(T,list,p,head)                               \
    for(T *p = (T*)((size_t)((head)->next)-offsetof(T,list));   \
-       &p->list != head;                                    \
+       &p->list != head;                                       \
        p = (T*)((size_t)(p->list.next)-offsetof(T,list)))

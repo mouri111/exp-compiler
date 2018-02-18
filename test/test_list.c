@@ -31,5 +31,9 @@ int main() {
       i += 1;
    }
 
+   list_for_(IntList,list,p,&head) {
+      memfree(p);
+   }
+
    return 0;
 }
