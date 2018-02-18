@@ -10,7 +10,7 @@ struct IntList {
 
 int main() {
    List head;
-   list_init_(head);
+   list_init_(&head);
    int xs[8] = {0, 1, 2, 3, 4, 5, 6, 7};
 
    for(int i = 0; i < 8; ++i) {
@@ -21,7 +21,7 @@ int main() {
 
    int i = 0;
 
-   list_for_(IntList,list,p,head) {
+   list_for_(IntList,list,p,&head) {
       if( i >= 8 )
          return 1;
 
