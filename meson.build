@@ -114,6 +114,32 @@ test('test_assertion failure',
      should_fail: true
     )
 
-test('test_list',
-     test_list
+test('test_list no argument',
+     test_list,
+     should_fail: true
+    )
+test('test_list nil test',
+     test_list,
+     args: ['nil'],
+     should_fail: true
+    )
+test('test_list push_back failure',
+     test_list,
+     args: ['push_back', 'failure'],
+     should_fail: true
+    )
+test('test_list push_back',
+     test_list,
+     args: ['push_back'],
+     should_fail: true
+    )
+test('test_list push_front failure',
+     test_list,
+     args: ['push_front', 'failure'],
+     should_fail: true
+    )
+test('test_list push_front',
+     test_list,
+     args: ['push_front'],
+     should_fail: true
     )
