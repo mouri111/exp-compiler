@@ -26,10 +26,10 @@ List* list_pop_back(List *head) __attribute__((warn_unused_result));
 
 #define list_free_(T,list,head)                 \
    do {                                         \
-      List *p = list_pop_front(head);           \
-      while( p != NULL ) {                      \
-         T *q = list_parent_(T,list,p);         \
-         memfree(q);                            \
-         p = list_pop_front(head);              \
+      List *p_ = list_pop_front(head);          \
+      while( p_ != NULL ) {                     \
+         T *q_ = list_parent_(T,list,p_);       \
+         memfree(q_);                           \
+         p_ = list_pop_front(head);             \
       }                                         \
    } while(false)
