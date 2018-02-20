@@ -80,6 +80,7 @@ int test_list_pop_back(bool failure) {
       assert_exit_( p != NULL );
       IntList *q = list_parent_(IntList,list,p);
       assert_exit_( q->x == xs[i] );
+      memfree(q);
    }
 
    list_free_(IntList,list,&head);
