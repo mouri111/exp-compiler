@@ -19,16 +19,17 @@ List* list_pop_back(List *head) __attribute__((warn_unused_result));
 #define list_parent_(T,list,p)                  \
    (T*)((size_t)(p)-offsetof(T,list))
 
-#define list_for_(T,list,p,head)                               \
-   for(T *p = (T*)((size_t)((head)->next)-offsetof(T,list));   \
-       &p->list != head;                                       \
-       p = (T*)((size_t)(p->list.next)-offsetof(T,list)))
+#define list_for_(T,list,p,head)                   \
+   for(T *p = list_parent_(T,list,(head)->next);   \
+       &p->list != head;                           \
+       p = list_parent_(T,list,p->list.next))
 
-#define list_free_(T,list,head)                       \
-   do {                                               \
-      List *p = list_pop_front(head);                 \
-      while( p != NULL ) {                            \
-         memfree((T*)((size_t)p-offsetof(T,list)));   \
-         p = list_pop_front(head);                    \
-      }                                               \
+#define list_free_(T,list,head)                 \
+   do {                                         \
+      List *p = list_pop_front(head);           \
+      while( p != NULL ) {                      \
+         T *q = list_parent_(T,list,p);         \
+         memfree(q);                            \
+         p = list_pop_front(head);              \
+      }                                         \
    } while(false)
