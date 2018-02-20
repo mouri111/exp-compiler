@@ -108,7 +108,7 @@ int main(int argc, char *argv[]) {
 
    for(int i = 0; i < num_tests; ++i) {
       if( strcmp(argv[1], test_names[i]) == 0 )
-         test_functions[i](failure);
+         return test_functions[i](failure);
    }
 
    return 1;
