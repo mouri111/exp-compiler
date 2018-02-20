@@ -87,7 +87,7 @@ int test_list_pop_back(bool failure) {
    return 0;
 }
 
-const int num_tests = 2;
+const int num_tests = 3;
 int(*test_functions[])(bool) = {
    test_list_push_back,
    test_list_push_front,
@@ -105,7 +105,7 @@ int main(int argc, char *argv[]) {
 
    bool failure = argc == 3;
 
-   for(int i = 0; i < 2; ++i) {
+   for(int i = 0; i < num_tests; ++i) {
       if( strcmp(argv[1], test_names[i]) == 0 )
          test_functions[i](failure);
    }
