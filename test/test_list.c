@@ -63,14 +63,40 @@ int test_list_push_front(bool failure) {
    return res;
 }
 
+int test_list_pop_back(bool failure) {
+   (void)failure;
+   List head;
+   list_init(&head);
+   int xs[8] = {0, 1, 2, 3, 4, 5, 6, 7};
+
+   for(int i = 0; i < 8; ++i) {
+      IntList *p = memalloc_(1,sizeof(IntList));
+      p->x = xs[i];
+      list_push_front(&head, &p->list);
+   }
+
+   for(int i = 0; i < 8; ++i) {
+      List *p = list_pop_back(&head);
+      assert_exit_( p != NULL );
+      IntList *q = list_parent_(IntList,list,p);
+      assert_exit_( q->x == xs[i] );
+   }
+
+   list_free_(IntList,list,&head);
+
+   return 0;
+}
+
 const int num_tests = 2;
 int(*test_functions[])(bool) = {
    test_list_push_back,
    test_list_push_front,
+   test_list_pop_back,
 };
 const char *test_names[] = {
    "push_back",
    "push_front",
+   "pop_back",
 };
 
 int main(int argc, char *argv[]) {
