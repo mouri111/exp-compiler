@@ -3,6 +3,7 @@
 #include <string.h>
 #include "list.h"
 #include "memory.h"
+#include "assertion.h"
 
 typedef struct IntList IntList;
 struct IntList {
@@ -25,22 +26,12 @@ int test_list_push_back(bool failure) {
    int res = failure ? 1 : 0;
 
    list_for_(IntList,list,p,&head) {
-      if( i >= 8 ) {
-         res = 1;
-         break;
-      }
-
-      if( p->x != xs[i] ) {
-         res = 1;
-         break;
-      }
-
+      assert_exit_( i < 8 );
+      assert_exit_( p->x == xs[i] );
       i += 1;
    }
 
-   if( i != 8 )
-      res = 1;
-
+   assert_exit_( i == 8 );
    list_free_(IntList,list,&head);
 
    return res;
@@ -61,22 +52,12 @@ int test_list_push_front(bool failure) {
    int res = failure ? 1 : 0;
 
    list_for_(IntList,list,p,&head) {
-      if( i >= 8 ) {
-         res = 1;
-         break;
-      }
-
-      if( p->x != xs[8-i-1] ) {
-         res = 1;
-         break;
-      }
-
+      assert_exit_( i < 8 );
+      assert_exit_( p->x == xs[8-i-1] );
       i += 1;
    }
 
-   if( i != 8 )
-      res = 1;
-
+   assert_exit_( i == 8 );
    list_free_(IntList,list,&head);
 
    return res;
