@@ -1,6 +1,8 @@
 #pragma once
 
 #include <stdlib.h>
+#include <stdbool.h>
+#include <stdio.h>
 
 #define assert_exit_(cond)                            \
    do {                                               \

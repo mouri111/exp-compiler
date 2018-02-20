@@ -3,7 +3,7 @@ project('exp-compiler','c')
 srcs = ['src/memory.c',
        ]
 
-incdir = include_directories('include')
+incdir = include_directories('include', 'src')
 
 warning_flags = ['-Wall',
                  '-Wextra',
@@ -32,6 +32,14 @@ test_memory = executable('test_memory',
                          c_args: warning_flags + test_flags + ['-coverage'],
                          link_args: test_flags + ['-fuse-ld=gold'] + ['-coverage']
                         )
+
+test_assertion = executable('test_assertion',
+                            'test/test_assertion.c',
+                            srcs,
+                            include_directories: incdir,
+                            c_args: warning_flags + test_flags + ['-coverage'],
+                            link_args: test_flags + ['-fuse-ld=gold'] + ['-coverage']
+                           )
 
 test('test_memory char_one failure',
      test_memory,
@@ -85,5 +93,14 @@ test('test_memory memalloc',
 test('test_memory memalloc failure',
      test_memory,
      args: ['memalloc', 'failure'],
+     should_fail: true
+    )
+
+test('test_assertion',
+     test_assertion
+    )
+test('test_assertion failure',
+     test_assertion,
+     args: ['failure'],
      should_fail: true
     )
