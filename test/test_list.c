@@ -83,6 +83,8 @@ int test_list_pop_back(bool failure) {
       memfree(q);
    }
 
+   List *p = list_pop_back(&head);
+   assert_exit_( p == NULL );
    list_free_(IntList,list,&head);
 
    return 0;
