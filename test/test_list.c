@@ -100,7 +100,7 @@ const char *test_names[] = {
 };
 
 int main(int argc, char *argv[]) {
-   if( ! ( argc != 2 || ( argc == 3 && strcmp(argv[2], "failure") == 0 ) ) )
+   if( ! ( argc == 2 || ( argc == 3 && strcmp(argv[2], "failure") == 0 ) ) )
       return 1;
 
    bool failure = argc == 3;
