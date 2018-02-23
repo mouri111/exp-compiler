@@ -16,6 +16,8 @@ void list_push_back(List *head, List *p);
 List* list_pop_front(List *head) __attribute__((warn_unused_result));
 List* list_pop_back(List *head) __attribute__((warn_unused_result));
 
+size_t list_size(List *head);
+
 #define list_parent_(T,list,p)                  \
    (T*)((size_t)(p)-offsetof(T,list))
 

@@ -124,6 +124,10 @@ test('test_list nil test',
      args: ['nil'],
      should_fail: true
     )
+test('test_list size',
+     test_list,
+     args: ['size'],
+    )
 test('test_list push_back failure',
      test_list,
      args: ['push_back', 'failure'],
