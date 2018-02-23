@@ -55,4 +55,19 @@ char string_builder_pop_back(StringBuilder *builder) {
 }
 
 char* string_builder_generate_cstring(StringBuilder *builder) {
+   int len = 0;
+
+   list_for_(CharList, list, p, &builder->head) {
+      len += 1;
+   }
+
+   char *res = memalloc_(len, sizeof(char));
+   int i = 0;
+
+   list_for_(CharList, list, p, &builder->head) {
+      res[i] = p->c;
+      i += 1;
+   }
+
+   return res;
 }
