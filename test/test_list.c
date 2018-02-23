@@ -11,6 +11,22 @@ struct IntList {
    List list;
 };
 
+int test_list_size(bool failure) {
+   (void)failure;
+   List head;
+   list_init(&head);
+
+   for(size_t i = 0; i < 1000; ++i) {
+      assert_exit_( list_size(&head) == i );
+      IntList *p = memalloc_(1, sizeof(IntList));
+      p->x = 0;
+      list_push_back(&head, &p->list);
+   }
+
+   list_free_(IntList,list,&head);
+   return 0;
+}
+
 int test_list_push_back(bool failure) {
    List head;
    list_init(&head);
@@ -90,13 +106,15 @@ int test_list_pop_back(bool failure) {
    return 0;
 }
 
-const int num_tests = 3;
+const int num_tests = 4;
 int(*test_functions[])(bool) = {
+   test_list_size,
    test_list_push_back,
    test_list_push_front,
    test_list_pop_back,
 };
 const char *test_names[] = {
+   "size",
    "push_back",
    "push_front",
    "pop_back",
