@@ -22,6 +22,37 @@ void delete_string_builder(StringBuilder *builder) {
    if( builder == NULL )
       return;
 
-   list_free_(CharList, head, &builder->head);
+   list_free_(CharList, list, &builder->head);
    memfree(builder);
+}
+
+void string_builder_push_front(StringBuilder *builder, char c) {
+   CharList *p = memalloc_(1, sizeof(CharList));
+   p->c = c;
+   list_push_front(&builder->head, &p->list);
+}
+
+void string_builder_push_back(StringBuilder *builder, char c) {
+   CharList *p = memalloc_(1, sizeof(CharList));
+   p->c = c;
+   list_push_back(&builder->head, &p->list);
+}
+
+char string_builder_pop_front(StringBuilder *builder) {
+   List *p = list_pop_front(&builder->head);
+   CharList *q = list_parent_(CharList, list, p);
+   char c = q->c;
+   memfree(q);
+   return c;
+}
+
+char string_builder_pop_back(StringBuilder *builder) {
+   List *p = list_pop_back(&builder->head);
+   CharList *q = list_parent_(CharList, list, p);
+   char c = q->c;
+   memfree(q);
+   return c;
+}
+
+char* string_builder_generate_cstring(StringBuilder *builder) {
 }

@@ -2,6 +2,7 @@ project('exp-compiler','c')
 
 srcs = ['src/memory.c',
         'src/list.c',
+        'src/string_builder.c',
        ]
 
 incdir = include_directories('include', 'src')
