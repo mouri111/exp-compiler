@@ -40,3 +40,15 @@ List* list_pop_back(List *head) {
    p->next = head;
    return res;
 }
+
+size_t list_size(List *head) {
+   size_t res = 0;
+   List *p = head->next;
+
+   while( p != head ) {
+      res += 1;
+      p = p->next;
+   }
+
+   return res;
+}
