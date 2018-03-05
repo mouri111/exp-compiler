@@ -13,7 +13,6 @@ matrix:
         - "3.6"
       env:
         - CC=gcc-7
-        - PYTHON=python3.6
 
 install:
   - mkdir -p $PWD/ninja

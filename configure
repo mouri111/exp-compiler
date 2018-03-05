@@ -1,6 +1,2 @@
 #!/bin/bash
-if [ -n "$PYTHON" ]; then
-    $PYTHON ~/.local/bin/meson build
-else
-    meson build
-fi
+meson build
