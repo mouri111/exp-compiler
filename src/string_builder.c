@@ -61,13 +61,15 @@ char* string_builder_generate_cstring(StringBuilder *builder) {
       len += 1;
    }
 
-   char *res = memalloc_(len, sizeof(char));
+   char *res = memalloc_(len+1, sizeof(char));
    int i = 0;
 
    list_for_(CharList, list, p, &builder->head) {
       res[i] = p->c;
       i += 1;
    }
+
+   res[len] = '\0';
 
    return res;
 }
