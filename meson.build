@@ -51,6 +51,14 @@ test_list = executable('test_list',
                        link_args: test_flags + ['-fuse-ld=gold'] + ['-coverage']
                       )
 
+test_string_builder = executable('test_string_builder',
+                                 'test/test_string_builder.c',
+                                 srcs,
+                                 include_directories: incdir,
+                                 c_args: warning_flags + test_flags + ['-coverage'],
+                                 link_args: test_flags + ['-fuse-ld=gold'] + ['-coverage']
+                                )
+
 test('test_memory char_one failure',
      test_memory,
      args: ['char_one', 'failure'],
@@ -149,4 +157,17 @@ test('test_list push_front',
 test('test_list pop_back',
      test_list,
      args: ['pop_back']
+    )
+
+test('test_string_builder nil',
+     test_string_builder,
+     should_fail: true,
+    )
+test('test_string_builder create_delete',
+     test_string_builder,
+     args: ['create_delete'],
+    )
+test('test_string_builder generate_cstring_1',
+     test_string_builder,
+     args: ['generate_cstring_1'],
     )
