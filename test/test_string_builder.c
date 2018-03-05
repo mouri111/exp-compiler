@@ -1,4 +1,7 @@
+#include <string.h>
 #include "string_builder.h"
+#include "assertion.h"
+#include "memory.h"
 
 int test_string_builder_create_delete(void) {
    StringBuilder *builder = create_string_builder();
@@ -6,7 +9,7 @@ int test_string_builder_create_delete(void) {
    return 0;
 }
 
-int test_string_builedr_generate_cstring_1(void) {
+int test_string_builder_generate_cstring_1(void) {
    StringBuilder *builder = create_string_builder();
    const char* str = "abcdefgh";
    int len = strlen(str);
@@ -24,7 +27,7 @@ int test_string_builedr_generate_cstring_1(void) {
 }
 
 const int num_tests = 2;
-int(*test_functions[])(bool) = {
+int(*test_functions[])(void) = {
    test_string_builder_create_delete,
    test_string_builder_generate_cstring_1,
 };
@@ -34,6 +37,8 @@ const char *test_names[] = {
 };
 
 int main(int argc, char *argv[]) {
+   assert_exit_( argc == 2 );
+
    for(int i = 0; i < num_tests; ++i) {
       if( strcmp(argv[1], test_names[i]) == 0 )
          return test_functions[i]();
