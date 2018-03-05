@@ -9,8 +9,6 @@ matrix:
           packages:
             - gcc-7
             - python3-pip
-      python:
-        - "3.6"
       env:
         - CC=gcc-7
 
@@ -18,8 +16,8 @@ install:
   - mkdir -p $PWD/ninja
   - curl -L https://github.com/ninja-build/ninja/releases/download/v1.8.2/ninja-linux.zip -o $PWD/ninja/ninja-linux.zip
   - unzip $PWD/ninja/ninja-linux.zip -d $PWD/ninja
-  - pip3 install --user meson
-  - export PATH=$PATH:$PWD/ninja:~/.local
+  - pip3 install --user meson==0.44.0
+  - export PATH=$PWD/ninja:~/.local/bin:$PATH
 
 script: ./configure && make && make test && cd build && gcov test_dummy@exe/src_*.gcda
 
