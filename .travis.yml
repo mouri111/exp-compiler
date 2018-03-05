@@ -8,6 +8,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - gcc-7
+            - python3-pip
       python:
         - "3.6"
       env:
