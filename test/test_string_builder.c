@@ -28,7 +28,7 @@ int test_string_builder_generate_cstring_1(void) {
 
 int test_string_builder_pop_front(void) {
    StringBuilder *builder = create_string_builder();
-   const char* str = "abcdefdh";
+   const char* str = "abcdefgh";
    int len = strlen(str);
 
    for(int i = 0; i < len; ++i)
