@@ -44,6 +44,7 @@ int test_string_builder_pop_front(void) {
 
    char c = string_builder_pop_front(builder);
    assert_exit_( c == '\0' );
+   delete_string_builder(builder);
    return 0;
 }
 
