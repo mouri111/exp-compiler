@@ -2,6 +2,7 @@ project('exp-compiler','c')
 
 srcs = ['src/memory.c',
         'src/list.c',
+        'src/string_builder.c',
        ]
 
 incdir = include_directories('include', 'src')
@@ -49,6 +50,14 @@ test_list = executable('test_list',
                        c_args: warning_flags + test_flags + ['-coverage'],
                        link_args: test_flags + ['-fuse-ld=gold'] + ['-coverage']
                       )
+
+test_string_builder = executable('test_string_builder',
+                                 'test/test_string_builder.c',
+                                 srcs,
+                                 include_directories: incdir,
+                                 c_args: warning_flags + test_flags + ['-coverage'],
+                                 link_args: test_flags + ['-fuse-ld=gold'] + ['-coverage']
+                                )
 
 test('test_memory char_one failure',
      test_memory,
@@ -148,4 +157,38 @@ test('test_list push_front',
 test('test_list pop_back',
      test_list,
      args: ['pop_back']
+    )
+
+test('test_string_builder nil',
+     test_string_builder,
+     should_fail: true,
+    )
+test('test_string_builder create_delete',
+     test_string_builder,
+     args: ['create_delete'],
+    )
+test('test_string_builder generate_cstring_1',
+     test_string_builder,
+     args: ['generate_cstring_1'],
+    )
+test('test_string_builder pop_front',
+     test_string_builder,
+     args: ['pop_front'],
+    )
+test('test_string_builder pop_back',
+     test_string_builder,
+     args: ['pop_back'],
+    )
+test('test_string_builder push_front',
+     test_string_builder,
+     args: ['push_front'],
+    )
+test('test_string_builder delete_null',
+     test_string_builder,
+     args: ['delete_null'],
+    )
+test('test_string_builder nil',
+     test_string_builder,
+     args: ['nil'],
+     should_fail: true,
     )
