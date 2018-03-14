@@ -175,3 +175,7 @@ test('test_string_builder pop_front',
      test_string_builder,
      args: ['pop_front'],
     )
+test('test_string_builder pop_back',
+     test_string_builder,
+     args: ['pop_back'],
+    )
