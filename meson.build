@@ -183,3 +183,7 @@ test('test_string_builder push_front',
      test_string_builder,
      args: ['push_front'],
     )
+test('test_string_builder delete_null',
+     test_string_builder,
+     args: ['delete_null'],
+    )

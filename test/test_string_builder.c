@@ -9,6 +9,11 @@ int test_string_builder_create_delete(void) {
    return 0;
 }
 
+int test_string_builder_delete_null(void) {
+   delete_string_builder(NULL);
+   return 0;
+}
+
 int test_string_builder_generate_cstring_1(void) {
    StringBuilder *builder = create_string_builder();
    const char* str = "abcdefgh";
@@ -85,9 +90,10 @@ int test_string_builder_pop_back(void) {
    return 0;
 }
 
-const int num_tests = 5;
+const int num_tests = 6;
 int(*test_functions[])(void) = {
    test_string_builder_create_delete,
+   test_string_builder_delete_null,
    test_string_builder_generate_cstring_1,
    test_string_builder_push_front,
    test_string_builder_pop_front,
@@ -95,6 +101,7 @@ int(*test_functions[])(void) = {
 };
 const char *test_names[] = {
    "create_delete",
+   "delete_null",
    "generate_cstring_1",
    "push_front",
    "pop_front",
