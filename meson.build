@@ -171,3 +171,7 @@ test('test_string_builder generate_cstring_1',
      test_string_builder,
      args: ['generate_cstring_1'],
     )
+test('test_string_builder pop_front',
+     test_string_builder,
+     args: ['pop_front'],
+    )
