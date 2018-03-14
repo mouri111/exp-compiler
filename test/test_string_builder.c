@@ -16,24 +16,22 @@ int test_string_builder_delete_null(void) {
 
 int test_string_builder_generate_cstring_1(void) {
    StringBuilder *builder = create_string_builder();
-   const char* str = "abcdefgh";
+   const char *str = "abcdefgh";
    int len = strlen(str);
 
    for(int i = 0; i < len; ++i)
       string_builder_push_back(builder, str[i]);
 
-   char* str2 = string_builder_generate_cstring(builder);
+   char *str2 = string_builder_generate_cstring(builder);
    assert_exit_( strcmp(str,str2) == 0 );
    memfree(str2);
-
    delete_string_builder(builder);
-
    return 0;
 }
 
 int test_string_builder_push_front(void) {
    StringBuilder *builder = create_string_builder();
-   const char* str = "abcdefgh";
+   const char *str = "abcdefgh";
    int len = strlen(str);
 
    for(int i = 0; i < len; ++i)
@@ -48,7 +46,7 @@ int test_string_builder_push_front(void) {
 
 int test_string_builder_pop_front(void) {
    StringBuilder *builder = create_string_builder();
-   const char* str = "abcdefgh";
+   const char *str = "abcdefgh";
    int len = strlen(str);
 
    for(int i = 0; i < len; ++i)
@@ -70,7 +68,7 @@ int test_string_builder_pop_front(void) {
 
 int test_string_builder_pop_back(void) {
    StringBuilder *builder = create_string_builder();
-   const char* str = "abcdefgh";
+   const char *str = "abcdefgh";
    int len = strlen(str);
 
    for(int i = 0; i < len; ++i)
