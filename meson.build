@@ -187,3 +187,8 @@ test('test_string_builder delete_null',
      test_string_builder,
      args: ['delete_null'],
     )
+test('test_string_builder nil',
+     test_string_builder,
+     args: ['nil'],
+     should_fail: true,
+    )
