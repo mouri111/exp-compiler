@@ -179,3 +179,7 @@ test('test_string_builder pop_back',
      test_string_builder,
      args: ['pop_back'],
     )
+test('test_string_builder push_front',
+     test_string_builder,
+     args: ['push_front'],
+    )

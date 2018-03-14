@@ -26,6 +26,21 @@ int test_string_builder_generate_cstring_1(void) {
    return 0;
 }
 
+int test_string_builder_push_front(void) {
+   StringBuilder *builder = create_string_builder();
+   const char* str = "abcdefgh";
+   int len = strlen(str);
+
+   for(int i = 0; i < len; ++i)
+      string_builder_push_front(builder, str[len-i-1]);
+
+   char *str2 = string_builder_generate_cstring(builder);
+   assert_exit_( strcmp(str, str2) == 0 );
+   memfree(str2);
+   delete_string_builder(builder);
+   return 0;
+}
+
 int test_string_builder_pop_front(void) {
    StringBuilder *builder = create_string_builder();
    const char* str = "abcdefgh";
@@ -70,16 +85,18 @@ int test_string_builder_pop_back(void) {
    return 0;
 }
 
-const int num_tests = 4;
+const int num_tests = 5;
 int(*test_functions[])(void) = {
    test_string_builder_create_delete,
    test_string_builder_generate_cstring_1,
+   test_string_builder_push_front,
    test_string_builder_pop_front,
    test_string_builder_pop_back,
 };
 const char *test_names[] = {
    "create_delete",
    "generate_cstring_1",
+   "push_front",
    "pop_front",
    "pop_back",
 };
