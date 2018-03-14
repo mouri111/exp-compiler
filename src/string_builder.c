@@ -40,6 +40,9 @@ void string_builder_push_back(StringBuilder *builder, char c) {
 
 char string_builder_pop_front(StringBuilder *builder) {
    List *p = list_pop_front(&builder->head);
+   if( p == NULL )
+      return '\0';
+
    CharList *q = list_parent_(CharList, list, p);
    char c = q->c;
    memfree(q);
@@ -48,6 +51,9 @@ char string_builder_pop_front(StringBuilder *builder) {
 
 char string_builder_pop_back(StringBuilder *builder) {
    List *p = list_pop_back(&builder->head);
+   if( p == NULL )
+      return '\0';
+
    CharList *q = list_parent_(CharList, list, p);
    char c = q->c;
    memfree(q);
